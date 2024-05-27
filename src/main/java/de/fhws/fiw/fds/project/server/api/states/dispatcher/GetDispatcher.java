@@ -3,8 +3,8 @@ package de.fhws.fiw.fds.project.server.api.states.dispatcher;
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.responseAdapter.JerseyResponse;
 import de.fhws.fiw.fds.sutton.server.api.services.ServiceContext;
 import de.fhws.fiw.fds.sutton.server.api.states.get.AbstractGetDispatcherState;
-import de.fhws.fiw.fds.project.server.api.states.persons.PersonRelTypes;
-import de.fhws.fiw.fds.project.server.api.states.persons.PersonUri;
+import de.fhws.fiw.fds.project.server.api.states.partnerUni.partnerUniRelTypes;
+import de.fhws.fiw.fds.project.server.api.states.partnerUni.partnerUniUri;
 import jakarta.ws.rs.core.Response;
 
 public class GetDispatcher extends AbstractGetDispatcherState<Response> {
