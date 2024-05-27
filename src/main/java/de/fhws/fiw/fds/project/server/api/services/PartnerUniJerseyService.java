@@ -1,27 +1,13 @@
-/*
- * Copyright 2021 University of Applied Sciences Würzburg-Schweinfurt, Germany
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
- */
-
-package de.fhws.fiw.fds.suttondemo.server.api.services;
+package de.fhws.fiw.fds.project.server.api.services;
 
 import de.fhws.fiw.fds.sutton.server.api.serviceAdapters.Exceptions.SuttonWebAppException;
 import de.fhws.fiw.fds.sutton.server.api.services.AbstractJerseyService;
-import de.fhws.fiw.fds.suttondemo.server.api.models.Location;
-import de.fhws.fiw.fds.suttondemo.server.api.models.Person;
-import de.fhws.fiw.fds.suttondemo.server.api.queries.QueryByFirstAndLastName;
-import de.fhws.fiw.fds.suttondemo.server.api.queries.QueryByLocationName;
-import de.fhws.fiw.fds.suttondemo.server.api.states.person_locations.*;
-import de.fhws.fiw.fds.suttondemo.server.api.states.persons.*;
+import de.fhws.fiw.fds.project.server.api.models.Module;
+import de.fhws.fiw.fds.project.server.api.models.PartnerUni;
+import de.fhws.fiw.fds.project.server.api.queries.QueryByFirstAndLastName;
+import de.fhws.fiw.fds.project.server.api.queries.QueryByLocationName;
+import de.fhws.fiw.fds.project.server.api.states.person_locations.*;
+import de.fhws.fiw.fds.project.server.api.states.persons.*;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
