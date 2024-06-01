@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  partner-universities:
+    image: openjdk:17-jdk-slim
+    container_name: partner-universities
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./target:/app
+    working_dir: /app
+    command: ["java", "-jar", "partner-universities-0.0.1-SNAPSHOT.jar"]
