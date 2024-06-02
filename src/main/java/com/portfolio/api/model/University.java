@@ -9,7 +9,6 @@ public class University {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String country;
     private String department;

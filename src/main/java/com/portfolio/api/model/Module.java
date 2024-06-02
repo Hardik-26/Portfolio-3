@@ -7,11 +7,9 @@ public class Module {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private int semester;
     private int creditPoints;
-
     @ManyToOne
     @JoinColumn(name = "university_id")
     private University university;

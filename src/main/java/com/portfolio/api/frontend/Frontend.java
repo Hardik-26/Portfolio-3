@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+import com.portfolio.api.config.AppConfig;
 import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
