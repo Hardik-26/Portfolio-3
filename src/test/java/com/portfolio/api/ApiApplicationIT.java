@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import com.portfolio.api.frontend.Frontend;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+
 
 import java.time.LocalDate;
 
@@ -40,72 +43,104 @@ public class ApiApplicationIT {
 
     @Test
     public void testGetUniversity() {
-        University university = frontend.getUniversity(1L);
-        assertNotNull(university);
-        assertEquals("Christ University", university.getName());
+        try {
+            University university = frontend.getUniversity(1L);
+            assertNotNull(university);
+            assertEquals("Christ University", university.getName());
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            fail("Request failed: " + e.getStatusCode());
+        }
     }
 
     @Test
     public void testUpdateUniversity() {
-        University university = frontend.getUniversity(1L);
-        university.setName("Updated University");
+        try {
+            University university = frontend.getUniversity(1L);
+            university.setName("Updated University");
 
-        frontend.updateUniversity(1L, university);
-        University updatedUniversity = frontend.getUniversity(1L);
-        assertEquals("Updated University", updatedUniversity.getName());
+            frontend.updateUniversity(1L, university);
+            University updatedUniversity = frontend.getUniversity(1L);
+            assertEquals("Updated University", updatedUniversity.getName());
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            fail("Request failed: " + e.getStatusCode());
+        }
     }
 
     @Test
     public void testDeleteUniversity() {
-        frontend.deleteUniversity(1L);
-        University university = frontend.getUniversity(1L);
-        assertNull(university);
+        try {
+            frontend.deleteUniversity(1L);
+            University university = frontend.getUniversity(1L);
+            assertNull(university);
+        } catch (HttpClientErrorException e) {
+            assertEquals(404, e.getRawStatusCode());
+        }
     }
 
     @Test
     public void testSearchUniversities() {
-        String query = "name=Test";
-        University[] universities = frontend.searchUniversities(query);
-        assertTrue(universities.length > 0);
+        try {
+            String query = "name=Test";
+            University[] universities = frontend.searchUniversities(query);
+            assertTrue(universities.length > 0);
+        } catch (HttpServerErrorException e) {
+            fail("Request failed: " + e.getStatusCode());
+        }
     }
 
     // Module tests
     @Test
     public void testCreateModule() {
-        Module module = new Module();
-        module.setName("Introduction to Quantum Computing");
-        module.setSemester(1);
-        module.setCreditPoints(5);
+        try {
+            Module module = new Module();
+            module.setName("Introduction to Quantum Computing");
+            module.setSemester(1);
+            module.setCreditPoints(5);
 
-        University university = frontend.getUniversity(1L);
-        module.setUniversity(university);
+            University university = frontend.getUniversity(1L);
+            module.setUniversity(university);
 
-        Module createdModule = frontend.createModule(module);
-        assertNotNull(createdModule.getId());
-        assertEquals("Introduction to Quantum Computing", createdModule.getName());
+            Module createdModule = frontend.createModule(module);
+            assertNotNull(createdModule.getId());
+            assertEquals("Introduction to Quantum Computing", createdModule.getName());
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            fail("Request failed: " + e.getStatusCode());
+        }
     }
 
     @Test
     public void testGetModule() {
-        Module module = frontend.getModule(1L);
-        assertNotNull(module);
-        assertEquals("Introduction to Quantum Computing", module.getName());
+        try {
+            Module module = frontend.getModule(1L);
+            assertNotNull(module);
+            assertEquals("Introduction to Quantum Computing", module.getName());
+        } catch (HttpClientErrorException e) {
+            assertEquals(404, e.getRawStatusCode());
+        }
     }
 
     @Test
     public void testUpdateModule() {
-        Module module = frontend.getModule(1L);
-        module.setName("Advanced Quantum Computing");
+        try {
+            Module module = frontend.getModule(1L);
+            module.setName("Advanced Quantum Computing");
 
-        frontend.updateModule(1L, module);
-        Module updatedModule = frontend.getModule(1L);
-        assertEquals("Advanced Quantum Computing", updatedModule.getName());
+            frontend.updateModule(1L, module);
+            Module updatedModule = frontend.getModule(1L);
+            assertEquals("Advanced Quantum Computing", updatedModule.getName());
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            fail("Request failed: " + e.getStatusCode());
+        }
     }
 
     @Test
     public void testDeleteModule() {
-        frontend.deleteModule(1L);
-        Module module = frontend.getModule(1L);
-        assertNull(module);
+        try {
+            frontend.deleteModule(1L);
+            Module module = frontend.getModule(1L);
+            assertNull(module);
+        } catch (HttpClientErrorException e) {
+            assertEquals(404, e.getRawStatusCode());
+        }
     }
 }

@@ -13,8 +13,8 @@ public class ModuleService {
     @Autowired
     private ModuleRepository moduleRepository;
 
-    public Module createModule(Module module) {
-        return moduleRepository.save(module);
+    public Module createModule(Module data) {
+        return moduleRepository.save(data);
     }
 
     public Optional<Module> getModule(Long id) {
