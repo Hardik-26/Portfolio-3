@@ -7,14 +7,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import com.portfolio.api.config.AppConfig;
-import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
 public class Frontend {
 
-    private static final String BASE_URL = "http://localhost:8080/portfolio";
+    private static final String BASE_URL = "localhost:8080/portfolio";
 
     @Autowired
     private RestTemplate restTemplate;
