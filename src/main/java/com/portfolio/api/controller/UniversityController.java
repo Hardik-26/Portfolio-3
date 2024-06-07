@@ -2,6 +2,7 @@ package com.portfolio.api.controller;
 
 import com.portfolio.api.model.University;
 import com.portfolio.api.service.UniversityService;
+import com.portfolio.api.specification.UniversitySpecification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,7 +44,12 @@ public class UniversityController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<University>> searchUniversities(Specification<University> spec, Pageable pageable) {
+    public ResponseEntity<Page<University>> searchUniversities(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String country,
+            @RequestParam(required = false) String department,
+            Pageable pageable) {
+        Specification<University> spec = UniversitySpecification.getUniversitySpecification(name, country, department);
         Page<University> universities = universityService.searchUniversities(spec, pageable);
         return ResponseEntity.ok(universities);
     }

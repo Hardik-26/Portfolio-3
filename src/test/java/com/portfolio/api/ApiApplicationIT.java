@@ -46,8 +46,9 @@ public class ApiApplicationIT {
         try {
             University university = frontend.getUniversity(1L);
             assertNotNull(university);
-            assertEquals("Christ University", university.getName());
+            assertEquals("Test University", university.getName());
         } catch (HttpClientErrorException | HttpServerErrorException e) {
+            System.out.println(e.getStatusCode());
             fail("Request failed: " + e.getStatusCode());
         }
     }

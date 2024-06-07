@@ -13,7 +13,7 @@ import java.util.Map;
 @Component
 public class Frontend {
 
-    private static final String BASE_URL = "localhost:8080/portfolio";
+    private static final String BASE_URL = "http://localhost:8080/portfolio";
 
     @Autowired
     private RestTemplate restTemplate;
