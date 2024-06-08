@@ -2,6 +2,7 @@ package com.portfolio.api;
 
 import com.portfolio.api.model.Module;
 import com.portfolio.api.model.University;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,13 +10,13 @@ import org.springframework.test.context.jdbc.Sql;
 import com.portfolio.api.frontend.Frontend;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
-
-
+import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import java.time.LocalDate;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
+@TestMethodOrder(OrderAnnotation.class)
 public class ApiApplicationIT {
 
     @Autowired
@@ -23,6 +24,7 @@ public class ApiApplicationIT {
 
     // University tests
     @Test
+    @Order(1)
     @Sql("/test-data.sql")  // Load some test data
     public void testCreateUniversity() {
         University university = new University();
@@ -42,6 +44,7 @@ public class ApiApplicationIT {
     }
 
     @Test
+    @Order(2)
     public void testGetUniversity() {
         try {
             University university = frontend.getUniversity(1L);
@@ -55,6 +58,7 @@ public class ApiApplicationIT {
 
     // Module tests
     @Test
+    @Order(3)
     public void testCreateModule() {
         try {
             Module module = new Module();
@@ -75,6 +79,7 @@ public class ApiApplicationIT {
     }
 
     @Test
+    @Order(4)
     public void testGetModule() {
         try {
             Module module = frontend.getModule(1L);
@@ -86,6 +91,7 @@ public class ApiApplicationIT {
     }
 
     @Test
+    @Order(5)
     public void testUpdateModule() {
         try {
             Module module = frontend.getModule(1L);
@@ -100,6 +106,7 @@ public class ApiApplicationIT {
     }
 
     @Test
+    @Order(6)
     public void testDeleteModule() {
         try {
             frontend.deleteModule(1L);
@@ -111,6 +118,7 @@ public class ApiApplicationIT {
     }
 
     @Test
+    @Order(7)
     public void testUpdateUniversity() {
         try {
             University university = frontend.getUniversity(1L);
@@ -125,6 +133,7 @@ public class ApiApplicationIT {
     }
 
     @Test
+    @Order(8)
     public void testDeleteUniversity() {
         try {
             frontend.deleteUniversity(1L);
