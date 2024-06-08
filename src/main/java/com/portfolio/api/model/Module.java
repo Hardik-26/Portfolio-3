@@ -1,5 +1,6 @@
 package com.portfolio.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +11,8 @@ public class Module {
     private String name;
     private int semester;
     private int creditPoints;
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "university_id")
     private University university;

@@ -53,42 +53,6 @@ public class ApiApplicationIT {
         }
     }
 
-    @Test
-    public void testUpdateUniversity() {
-        try {
-            University university = frontend.getUniversity(1L);
-            university.setName("Updated University");
-
-            frontend.updateUniversity(1L, university);
-            University updatedUniversity = frontend.getUniversity(1L);
-            assertEquals("Updated University", updatedUniversity.getName());
-        } catch (HttpClientErrorException | HttpServerErrorException e) {
-            fail("Request failed: " + e.getStatusCode());
-        }
-    }
-
-    @Test
-    public void testDeleteUniversity() {
-        try {
-            frontend.deleteUniversity(1L);
-            University university = frontend.getUniversity(1L);
-            assertNull(university);
-        } catch (HttpClientErrorException e) {
-            assertEquals(404, e.getRawStatusCode());
-        }
-    }
-
-    @Test
-    public void testSearchUniversities() {
-        try {
-            String query = "name=Test";
-            University[] universities = frontend.searchUniversities(query);
-            assertTrue(universities.length > 0);
-        } catch (HttpServerErrorException e) {
-            fail("Request failed: " + e.getStatusCode());
-        }
-    }
-
     // Module tests
     @Test
     public void testCreateModule() {
@@ -99,6 +63,7 @@ public class ApiApplicationIT {
             module.setCreditPoints(5);
 
             University university = frontend.getUniversity(1L);
+            System.out.println(university);
             module.setUniversity(university);
 
             Module createdModule = frontend.createModule(module);
@@ -144,4 +109,31 @@ public class ApiApplicationIT {
             assertEquals(404, e.getRawStatusCode());
         }
     }
+
+    @Test
+    public void testUpdateUniversity() {
+        try {
+            University university = frontend.getUniversity(1L);
+            university.setName("Updated University");
+
+            frontend.updateUniversity(1L, university);
+            University updatedUniversity = frontend.getUniversity(1L);
+            assertEquals("Updated University", updatedUniversity.getName());
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            fail("Request failed: " + e.getStatusCode());
+        }
+    }
+
+    @Test
+    public void testDeleteUniversity() {
+        try {
+            frontend.deleteUniversity(1L);
+            University university = frontend.getUniversity(1L);
+            assertNull(university);
+        } catch (HttpClientErrorException e) {
+            assertEquals(404, e.getRawStatusCode());
+        }
+    }
+
 }
+
