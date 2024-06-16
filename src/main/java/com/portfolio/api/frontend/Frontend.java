@@ -5,7 +5,6 @@ import com.portfolio.api.model.University;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
 public class Frontend {
@@ -17,11 +16,13 @@ public class Frontend {
 
     // University methods
     public University createUniversity(University university) {
-        return restTemplate.postForObject(BASE_URL + "/universities", university, University.class);
+        University createdUniversity = restTemplate.postForObject(BASE_URL + "/universities", university, University.class);
+        return createdUniversity;
     }
 
     public University getUniversity(Long id) {
-        return restTemplate.getForObject(BASE_URL + "/universities/{id}", University.class, id);
+        University university = restTemplate.getForObject(BASE_URL + "/universities/{id}", University.class, id);
+        return university;
     }
 
     public void updateUniversity(Long id, University university) {
@@ -32,20 +33,15 @@ public class Frontend {
         restTemplate.delete(BASE_URL + "/universities/{id}", id);
     }
 
-    public University[] searchUniversities(String query) {
-        String url = UriComponentsBuilder.fromHttpUrl(BASE_URL + "/universities")
-                .query(query)
-                .toUriString();
-        return restTemplate.getForObject(url, University[].class);
-    }
-
     // Module methods
     public Module createModule(Module module) {
-        return restTemplate.postForObject(BASE_URL + "/modules", module, Module.class);
+        Module response = restTemplate.postForObject(BASE_URL + "/modules", module, Module.class);
+        return response;
     }
 
     public Module getModule(Long id) {
-        return restTemplate.getForObject(BASE_URL + "/modules/{id}", Module.class, id);
+        Module response  = restTemplate.getForObject(BASE_URL + "/modules/{id}", Module.class, id);
+        return response;
     }
 
     public void updateModule(Long id, Module module) {
@@ -55,4 +51,5 @@ public class Frontend {
     public void deleteModule(Long id) {
         restTemplate.delete(BASE_URL + "/modules/{id}", id);
     }
+
 }

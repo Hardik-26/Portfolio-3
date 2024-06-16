@@ -1,6 +1,7 @@
 package com.portfolio.api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -33,42 +34,52 @@ public class Module {
 
     // Getters and Setters
 
+    @JsonProperty("id")
     public Long getId() {
         return id;
     }
 
+    @JsonProperty("id")
     public void setId(Long id) {
         this.id = id;
     }
 
+    @JsonProperty("name")
     public String getName() {
         return name;
     }
 
+    @JsonProperty("name")
     public void setName(String name) {
         this.name = name;
     }
 
+    @JsonProperty("semester")
     public int getSemester() {
         return semester;
     }
 
+    @JsonProperty("semester")
     public void setSemester(int semester) {
         this.semester = semester;
     }
 
+    @JsonProperty("creditPoints")
     public int getCreditPoints() {
         return creditPoints;
     }
 
+    @JsonProperty("creditPoints")
     public void setCreditPoints(int creditPoints) {
         this.creditPoints = creditPoints;
     }
 
+    @JsonProperty("university")
     public University getUniversity() {
         return university;
     }
 
+    @JsonProperty("university")
     public void setUniversity(University university) {
         this.university = university;
     }

@@ -8,7 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-
+import org.springframework.util.StringUtils;
 import java.util.Optional;
 
 @Service
@@ -34,7 +34,19 @@ public class UniversityService {
         universityRepository.deleteById(id);
     }
 
-    public Page<University> searchUniversities(Specification<University> spec, Pageable pageable) {
+    public Page<University> searchUniversities(String name, String country, String department, Pageable pageable) {
+        Specification<University> spec = Specification.where(null);
+
+        if (StringUtils.hasText(name)) {
+            spec = spec.and((root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("name"), "%" + name + "%"));
+        }
+        if (StringUtils.hasText(country)) {
+            spec = spec.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("country"), country));
+        }
+        if (StringUtils.hasText(department)) {
+            spec = spec.and((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("department"), department));
+        }
+
         return universityRepository.findAll(spec, pageable);
     }
 }
