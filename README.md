@@ -62,6 +62,12 @@ Example Search Queries
 
 ---
 
+## Video Demo
+- [**Youtube Link**](https://youtube.com/watch?v=qDfCmWheg1w)
+
+---
+
+
 ## Features
 
 - Manage partner universities:
